@@ -12,14 +12,14 @@ class App extends Component {
         <aside className="app-aside">
           <NavbarAside />
         </aside>
-          <Router>
-              <Suspense fallback={<div>Loading...</div>}>
-                  <Switch>
-                      <Route exact path="/" component={MainPage} />
-                      <Route path="/test" component={TestPage} />
-                  </Switch>
-              </Suspense>
-          </Router>
+        <Router>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Switch>
+              <Route exact path="/" component={MainPage} />
+              <Route path="/test" component={TestPage} />
+            </Switch>
+          </Suspense>
+        </Router>
       </div>
     );
   }
