@@ -39,18 +39,6 @@ a:focus {
   background-color: var(--yellow);
 }
 
-.app-nav__list {
-  margin: 20px 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-.app-nav__link {
-  display: block;
-  padding: 10px 0;
-  color: #000;
-}
-
 .app-main {
   height: 100%;
   overflow: auto;
