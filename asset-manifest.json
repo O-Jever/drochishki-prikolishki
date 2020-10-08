@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/penknife/static/css/main.1d4ab72c.chunk.css",
+    "main.js": "/penknife/static/js/main.e8507ef7.chunk.js",
+    "main.js.map": "/penknife/static/js/main.e8507ef7.chunk.js.map",
+    "runtime-main.js": "/penknife/static/js/runtime-main.e75e9726.js",
+    "runtime-main.js.map": "/penknife/static/js/runtime-main.e75e9726.js.map",
+    "static/js/2.2e90bf5c.chunk.js": "/penknife/static/js/2.2e90bf5c.chunk.js",
+    "static/js/2.2e90bf5c.chunk.js.map": "/penknife/static/js/2.2e90bf5c.chunk.js.map",
+    "static/js/3.1f9009b6.chunk.js": "/penknife/static/js/3.1f9009b6.chunk.js",
+    "static/js/3.1f9009b6.chunk.js.map": "/penknife/static/js/3.1f9009b6.chunk.js.map",
+    "static/js/4.27e08045.chunk.js": "/penknife/static/js/4.27e08045.chunk.js",
+    "static/js/4.27e08045.chunk.js.map": "/penknife/static/js/4.27e08045.chunk.js.map",
+    "index.html": "/penknife/index.html",
+    "precache-manifest.bf4712c3e1a70cf66d0f97e275475306.js": "/penknife/precache-manifest.bf4712c3e1a70cf66d0f97e275475306.js",
+    "service-worker.js": "/penknife/service-worker.js",
+    "static/css/main.1d4ab72c.chunk.css.map": "/penknife/static/css/main.1d4ab72c.chunk.css.map",
+    "static/js/2.2e90bf5c.chunk.js.LICENSE.txt": "/penknife/static/js/2.2e90bf5c.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e75e9726.js",
+    "static/js/2.2e90bf5c.chunk.js",
+    "static/css/main.1d4ab72c.chunk.css",
+    "static/js/main.e8507ef7.chunk.js"
+  ]
+}
