@@ -3,7 +3,7 @@ import React, {Component, Suspense, lazy } from 'react';
 import NavbarAside from './navigation/Navbar';
 import './App.css';
 const MainPage = lazy(() => import('./pages/mainPage/pageMain'));
-const TestPage = lazy(() => import('./pages/testPage/pageTest'));
+const MapWithWeatherPage = lazy(() => import('./pages/mapWithWeatherPage/pageMapWithWeather'));
 
 class App extends Component {
   render() {
@@ -16,7 +16,7 @@ class App extends Component {
               <Suspense fallback={<div>Loading...</div>}>
                   <Switch>
                       <Route exact path="/" component={MainPage} />
-                      <Route path="/test" component={TestPage} />
+                      <Route path="/map-with-weather" component={MapWithWeatherPage} />
                   </Switch>
               </Suspense>
           </Router>

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-class TestPage extends Component {
+class MapWithWeatherPage extends Component {
     render(){
         return (
             <main className="app-main">
-                <section id="testPage" className="section">
+                <section id="mapWithWeatherPage" className="section">
                     <h1>Тестовая страница</h1>
                 </section>
             </main>
@@ -12,4 +12,4 @@ class TestPage extends Component {
     }
 }
 
-export default TestPage;
+export default MapWithWeatherPage;

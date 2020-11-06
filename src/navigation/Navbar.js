@@ -7,7 +7,7 @@ class Navbar extends Component {
             <nav className="app-nav">
                 <ul className="app-nav__list">
                     <li className="app-nav__list-item">
-                        <a href="/test" className="app-nav__link">Тестовая страница</a>
+                        <a href="/map-with-weather" className="app-nav__link">Маршрут и погода</a>
                     </li>
                 </ul>
             </nav>
