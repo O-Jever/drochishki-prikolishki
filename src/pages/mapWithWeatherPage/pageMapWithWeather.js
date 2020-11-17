@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import FormComponent from './formPage/pageForm';
 
 class MapWithWeatherPage extends Component {
     render(){
         return (
             <main className="app-main">
                 <section id="mapWithWeatherPage" className="section">
-                    <h1>Тестовая страница</h1>
+                    <FormComponent></FormComponent>
                 </section>
             </main>
         );
