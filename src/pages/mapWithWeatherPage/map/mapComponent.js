@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 
 class MapComponent extends Component {
-    handleRouteChanged(route) {
-        console.log('Из карты', route);
-    }
-
     componentDidMount() {
         this.props.emitter.on('routechaged', this.handleRouteChanged);
 
@@ -18,6 +14,14 @@ class MapComponent extends Component {
                 zoom: 7
             });
         }
+    }
+
+    handleRouteChanged(route) {
+        console.log('Из карты', route);
+    }
+
+    componentWillUnmount(){
+        this.props.emitter.off('routechaged', this.handleRouteChanged);
     }
 
     render() {
