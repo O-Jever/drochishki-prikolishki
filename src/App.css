@@ -44,4 +44,6 @@ a:focus {
 .app-main {
   height: 100%;
   overflow: auto;
+  display: flex;
+  justify-content: center;
 }
