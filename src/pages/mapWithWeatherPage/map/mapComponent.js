@@ -1,23 +1,45 @@
 import React, { Component } from 'react';
 
+const mapState = { center: [55.76, 37.64], zoom: 9, controls: [] };
+
 class MapComponent extends Component {
+    constructor() {
+        super();
+        this.state = {};
+        this.map = null;
+        this.ymaps = window.ymaps;
+        this.handleRouteChanged = this.handleRouteChanged.bind(this);
+    }
+
     componentDidMount() {
         this.props.emitter.on('routechaged', this.handleRouteChanged);
 
-        const ymaps = window.ymaps;
-
-        ymaps.ready(init);
-
-        function init() {
-            const myMap = new ymaps.Map("map", {
-                center: [55.76, 37.64],
-                zoom: 7
-            });
+        this.ymaps.ready(init.bind(this));
+        function init(){
+            this.map = new this.ymaps.Map("map", mapState);
         }
     }
 
-    handleRouteChanged(route) {
-        console.log('Из карты', route);
+    handleRouteChanged(way) {
+        this.ymaps.route([
+                way.startPoint, way.endPoint
+            ],{
+                mapStateAutoApply: true,
+                //multiRoute: true
+            }
+        ).then((route) => {
+            route.getPaths().options.set({
+              balloonContentBodyLayout: this.ymaps.templateLayoutFactory.createClass('$[properties.humanJamsTime]'),
+              strokeColor: '0000ffff',
+              opacity: 0.9
+            });
+
+            this.map.geoObjects.remove(this.state.route);
+
+            this.setState({ route });
+            
+            this.map.geoObjects.add(route);
+          });
     }
 
     componentWillUnmount(){
@@ -26,7 +48,7 @@ class MapComponent extends Component {
 
     render() {
         return (
-            <div id="map" style={{ width: '600px', height: '400px' }}></div>
+            <div id='map' style={{ width: '600px', height: '400px', marginTop: '20px' }}></div>
         );
     }
 }
