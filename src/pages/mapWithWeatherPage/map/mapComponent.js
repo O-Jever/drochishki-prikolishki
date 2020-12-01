@@ -39,7 +39,17 @@ class MapComponent extends Component {
             this.setState({ route });
             
             this.map.geoObjects.add(route);
-          });
+
+            return route.getWayPoints().toArray();
+        }).then((points) => {
+            const [lat, lon] = points[0].geometry.getCoordinates();
+
+            return fetch(`http://localhost:3001/get-locality-weather?lat=${lat}&lon=${lon}`);
+        }).then((result) => {
+            return result.json()
+        }).then(result => {
+            console.log('Погода', result);
+        });
     }
 
     componentWillUnmount(){
