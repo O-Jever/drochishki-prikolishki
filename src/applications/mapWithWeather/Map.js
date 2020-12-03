@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 const mapState = { center: [55.76, 37.64], zoom: 9, controls: [] };
 
-class MapComponent extends Component {
+export class Map extends Component {
     constructor() {
         super();
         this.state = {};
@@ -62,5 +62,3 @@ class MapComponent extends Component {
         );
     }
 }
-
-export default MapComponent;

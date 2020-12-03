@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { EventEmitter } from 'events';
-import { FormComponent } from './formPage/pageForm';
-import MapComponent from './map/mapComponent';
+import { Form } from './form/Form';
+import { Map } from './Map';
 
-class MapWithWeatherPage extends Component {
+class MapWithWeather extends Component {
     constructor(props) {
         super(props);
         this.state = { route: {} }; 
@@ -23,12 +23,12 @@ class MapWithWeatherPage extends Component {
         return (
             <main className="app-main">
                 <section id="mapWithWeatherPage" className="section">
-                    <FormComponent onSubmit={this.handleRoute}></FormComponent>
-                    <MapComponent emitter={this.emitter}></MapComponent>
+                    <Form onSubmit={this.handleRoute}></Form>
+                    <Map emitter={this.emitter}></Map>
                 </section>
             </main>
         );
     }
 }
 
-export default MapWithWeatherPage;
+export default MapWithWeather;

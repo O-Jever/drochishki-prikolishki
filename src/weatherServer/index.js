@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const { getWeatherForLocality } = require('./src/pages/mapWithWeatherPage/weather/weatherAPI');
+const { getWeatherForLocality } = require('./api');
 
 const app = express();
 const port = 3001;

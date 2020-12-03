@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React, {Component, Suspense, lazy } from 'react';
 import NavbarAside from './navigation/Navbar';
 import './App.css';
-const MainPage = lazy(() => import('./pages/mainPage/pageMain'));
-const MapWithWeatherPage = lazy(() => import('./pages/mapWithWeatherPage/pageMapWithWeather'));
+const MainPage = lazy(() => import('./applications/MainPage'));
+const MapWithWeather = lazy(() => import('./applications/mapWithWeather/MapWithWeather'));
 
 class App extends Component {
   render() {
@@ -16,7 +16,7 @@ class App extends Component {
               <Suspense fallback={<div>Loading...</div>}>
                   <Switch>
                       <Route exact path="/" component={MainPage} />
-                      <Route path="/map-with-weather" component={MapWithWeatherPage} />
+                      <Route path="/map-with-weather" component={MapWithWeather} />
                   </Switch>
               </Suspense>
           </Router>

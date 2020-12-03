@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './pageForm.css';
+import './Form.css';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import { Button, TextField } from '@material-ui/core';
@@ -13,7 +13,7 @@ const validationSchema = yup.object({
       .required('Поле обязательно для заполнения'),
 });
 
-export class FormComponent extends Component {
+export class Form extends Component {
     render() {
         return (
             <Formik
