@@ -20,36 +20,31 @@ export class Map extends Component {
         }
     }
 
-    handleRouteChanged(way) {
-        this.ymaps.route([
+    async handleRouteChanged(way) {
+        const route = await this.ymaps.route([
                 way.startPoint, way.endPoint
             ],{
                 mapStateAutoApply: true,
                 //multiRoute: true
             }
-        ).then((route) => {
-            route.getPaths().options.set({
-              balloonContentBodyLayout: this.ymaps.templateLayoutFactory.createClass('$[properties.humanJamsTime]'),
-              strokeColor: '0000ffff',
-              opacity: 0.9
-            });
+        );
 
-            this.map.geoObjects.remove(this.state.route);
-
-            this.setState({ route });
-            
-            this.map.geoObjects.add(route);
-
-            return route.getWayPoints().toArray();
-        }).then((points) => {
-            const [lat, lon] = points[0].geometry.getCoordinates();
-
-            return fetch(`http://localhost:3001/get-locality-weather?lat=${lat}&lon=${lon}`);
-        }).then((result) => {
-            return result.json()
-        }).then(result => {
-            console.log('Погода', result);
+        route.getPaths().options.set({
+            balloonContentBodyLayout: this.ymaps.templateLayoutFactory.createClass('$[properties.humanJamsTime]'),
+            strokeColor: '0000ffff',
+            opacity: 0.9
         });
+        this.map.geoObjects.remove(this.state.route);
+        this.setState({ route });
+        this.map.geoObjects.add(route);
+
+        const points = route.getWayPoints().toArray();
+        const [lat, lon] = points[0].geometry.getCoordinates();
+
+        const responce = await fetch(`http://localhost:3001/get-locality-weather?lat=${lat}&lon=${lon}`);
+        const result = await responce.json();
+        
+        console.log('Погода', result);
     }
 
     componentWillUnmount(){
