@@ -1,5 +1,5 @@
 const apiUrl = 'https://api.weather.yandex.ru/v2/forecast'; 
-const apiKey = 'e5f65212-941e-4d8d-be07-56d51260e4d1';
+const apiKey = '93ea672b-6ebc-4a5b-be6c-093b27b9cac7';
 
 module.exports = {
     apiUrl,
