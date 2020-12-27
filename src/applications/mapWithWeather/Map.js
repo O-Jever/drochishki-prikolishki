@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { createPlacemark } from './WeatherPlacemark';
 
 const mapState = { center: [55.76, 37.64], zoom: 9, controls: [] };
 
@@ -20,31 +21,51 @@ export class Map extends Component {
         }
     }
 
-    async handleRouteChanged(way) {
-        const route = await this.ymaps.route([
-                way.startPoint, way.endPoint
-            ],{
-                mapStateAutoApply: true,
-                //multiRoute: true
+    handleRouteChanged(way) {
+        const multiRoute = new this.ymaps.multiRouter.MultiRoute({
+                referencePoints: [way.startPoint, way.endPoint],
+                params: {
+                    results: 1
+                }
+            },{
+                boundsAutoApply: true,
+                wayPointVisible: false
             }
         );
+       
+        this.map.geoObjects.remove(this.state.multiRoute);
+        this.setState({ multiRoute });
+        this.map.geoObjects.add(multiRoute);
 
-        route.getPaths().options.set({
-            balloonContentBodyLayout: this.ymaps.templateLayoutFactory.createClass('$[properties.humanJamsTime]'),
-            strokeColor: '0000ffff',
-            opacity: 0.9
-        });
-        this.map.geoObjects.remove(this.state.route);
-        this.setState({ route });
-        this.map.geoObjects.add(route);
+        multiRoute.events.once('update', onUpdateCallback.bind(this)); 
+        
+        async function onUpdateCallback() {
+            const points = multiRoute.getWayPoints().toArray();
+        
+            for (const point of points) {
+                const placemark = await this.createPlacemarkWithWeather(point);
+                this.map.geoObjects.add(placemark);
+            }
 
-        const points = route.getWayPoints().toArray();
-        const [lat, lon] = points[0].geometry.getCoordinates();
+            var activeRoute = multiRoute.getActiveRoute();
+            console.log("Длина: " + activeRoute.properties.get("distance").text);
+            console.log("Время прохождения: " + activeRoute.properties.get("duration").text);
 
+        }
+    }
+
+    async createPlacemarkWithWeather(point) {
+        const [lat, lon] = point.geometry.getCoordinates();
         const responce = await fetch(`http://localhost:3001/get-locality-weather?lat=${lat}&lon=${lon}`);
         const result = await responce.json();
-        
-        console.log('Погода', result);
+
+        console.log("Погода ", result.now_dt, result.info.tzinfo);
+
+        return createPlacemark([lat, lon], result.fact);
+    }
+
+    calculationTimeWeather(weatherParts) {
+
     }
 
     componentWillUnmount(){
